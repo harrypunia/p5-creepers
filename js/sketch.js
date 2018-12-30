@@ -32,17 +32,21 @@ let creepersLeft = [],
     population = 200,
     reset = false,
     init = false,
-    song,
     fft,
     freq;
+var song;
 
-function prelaod() {
-    song = loadSound('assets/wall.mp3');
+function preload() {
+    song = loadSound('/assets/wall.mp3');
+    return new Promise(resolve => {
+        resolve();
+    });
 }
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight, P2D);
     noFill();
+    fft = new p5.FFT(0, 256);
     for (let i = 0; i < population / 4; i++) {
         creepersLeft[i] = new Creeper(0, random(0, height));
         creepersTop[i] = new Creeper(random(0, width), 0);
@@ -54,6 +58,7 @@ function setup() {
 
 function draw() {
     reset ? (background(col[0].r, col[0].g, col[0].b), reset = false) : background(col[0].r, col[0].g, col[0].b, 10);
+    freq = fft.analyze();
     if (init) {
         for (let i in creepersLeft) {
             creepersLeft[i].show();
@@ -70,8 +75,15 @@ function windowResized() {
 }
 
 const initSketch = () => {
-    init = true;
-    let play = document.getElementById('play');
-    play.style.display = 'none';
     song.play();
+    init = true;
+    let btn = document.getElementById('play');
+    btn.style.display = 'none';
 }
+
+async function loaded() {
+    await preload;
+    let btn = document.getElementById('play');
+    btn.classList.add('in');
+}
+//Testing [Delete]
