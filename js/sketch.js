@@ -31,10 +31,13 @@ let creepersLeft = [],
     },
     population = 200,
     reset = false,
-    init = false;
+    init = false,
+    song,
+    fft,
+    freq;
 
 function prelaod() {
-    loadSound('assets/wall.mp3');
+    song = loadSound('assets/wall.mp3');
 }
 
 function setup() {
@@ -66,8 +69,9 @@ function windowResized() {
     resizeCanvas(window.innerWidth, window.innerHeight);
 }
 
-const initSketch = () {
+const initSketch = () => {
     init = true;
     let play = document.getElementById('play');
     play.style.display = 'none';
+    song.play();
 }
