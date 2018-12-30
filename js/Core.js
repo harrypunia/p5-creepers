@@ -7,15 +7,17 @@ class Core {
         this.i = i;
     }
     show() {
+        let altC = 9 % (this.i + 1) == 0 ? 3 : 9 % (this.i + 1);
         noFill();
         applyMatrix();
         translate(width / 2, height / 2);
-        stroke(col[3].r, col[3].g, col[3].b);
+        stroke(col[altC].r, col[altC].g, col[altC].b);
         ellipse(this.x, this.y, this.r, this.r, 50);
         resetMatrix();
     }
     update(freq) {
-        this.r = freq > this.initR ? freq : this.initR;
+        this.r = freq > this.initR ? freq : freq > 120 ? freq * 4 : this.initR;
+        say(freq);
         //this.x = freq > 150 ? freq - 150 : 0;
     }
 }

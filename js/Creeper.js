@@ -29,8 +29,8 @@ class Creeper {
         this.life = 100;
         this.chance = 100;
         this.core = {
-            w: 60,
-            h: 60
+            w: 80,
+            h: 80
         }
     }
     show(freq) {
@@ -46,12 +46,13 @@ class Creeper {
             this.updateDist();
             this.assignColor();
             strokeWeight(freq / 20);
-            if (this.catch(this.pos)) {
+            if (this.catch()) {
                 this.pos.x = this.resetPos.x;
                 this.pos.y = this.resetPos.y;
                 this.step.x = 0;
                 this.step.y = 0;
-                this.updateDist()
+                this.updateDist();
+                say(this.pos);
             } else {
                 this.step.x = random(this.pos.x, this.pos.x + (this.dist.x / this.totalSteps));
                 this.step.y = random(this.pos.y, this.pos.y + (this.dist.y / this.totalSteps));
@@ -60,12 +61,12 @@ class Creeper {
             strokeWeight(1);
         }
     }
-    catch (pos) {
+    catch () {
         let coreRange = {
             x: this.core.w / 2,
             y: this.core.h / 2
         }
-        if ((pos.x > this.center.x - coreRange.x && pos.x < this.center.x + coreRange.x) || (pos.y > this.center.y - coreRange.y && pos.y < this.center.y + coreRange.y)) {
+        if ((this.pos.x > this.center.x - coreRange.x && this.pos.x < this.center.x + coreRange.x) && (this.pos.y > this.center.y - coreRange.y && this.pos.y < this.center.y + coreRange.y)) {
             return true
         } else {
             return false

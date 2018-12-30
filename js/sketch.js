@@ -51,8 +51,8 @@ function setup() {
         creepersRight[i] = new Creeper(width, random(0, height));
         creepersBottom[i] = new Creeper(random(0, width), height);
     }
-    for (let i = 0; i < 4; i++) {
-        cores[i] = new Core((i + 1) * 20)
+    for (let i = 0; i < 8; i++) {
+        cores[i] = new Core((i + 1) * 20, i)
     }
     background(col[0].r, col[0].g, col[0].b);
 }
