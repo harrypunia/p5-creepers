@@ -14,7 +14,7 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background: black;
+            /*            background: black;*/
         }
 
         #play {
@@ -39,13 +39,14 @@
         }
 
         .in {
-            animation: in .2s ease-in;
+            animation: play-in .2s ease-in;
             animation-fill-mode: forwards;
         }
 
-        @keyframes in {
+        @keyframes play-in {
             to {
                 transform: translate(-50%, -50%) rotate(0);
+                opacity: 1;
             }
         }
 

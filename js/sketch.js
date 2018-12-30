@@ -38,9 +38,6 @@ var song;
 
 function preload() {
     song = loadSound('/assets/wall.mp3');
-    return new Promise(resolve => {
-        resolve();
-    });
 }
 
 function setup() {
@@ -61,10 +58,10 @@ function draw() {
     freq = fft.analyze();
     if (init) {
         for (let i in creepersLeft) {
-            creepersLeft[i].show();
-            creepersTop[i].show();
-            creepersRight[i].show();
-            creepersBottom[i].show();
+            creepersLeft[i].show(freq[i]);
+            creepersTop[i].show(freq[i]);
+            creepersRight[i].show(freq[i]);
+            creepersBottom[i].show(freq[i]);
         }
     }
 }
@@ -81,9 +78,10 @@ const initSketch = () => {
     btn.style.display = 'none';
 }
 
-async function loaded() {
-    await preload;
+setTimeout(() => {
     let btn = document.getElementById('play');
     btn.classList.add('in');
-}
+}, 1000)
+
 //Testing [Delete]
+const say = m => console.log(m);

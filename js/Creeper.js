@@ -33,22 +33,25 @@ class Creeper {
             h: 20
         }
     }
-    show() {
+    show(freq) {
         stroke(this.lastStroke.r, this.lastStroke.g, this.lastStroke.b)
         line(this.pos.x, this.pos.y, this.step.x, this.step.y);
         this.pos.x = this.step.x;
         this.pos.y = this.step.y;
-        this.update();
+        this.update(freq);
     }
-    update() {
+    update(freq) {
         let chance = Math.floor(random(this.chance)) == 1;
         if (chance) {
             this.updateDist();
             this.assignColor();
+            strokeWeight(freq / 25);
             if (this.catch(this.pos)) {} else {
                 this.step.x = random(this.pos.x, this.pos.x + (this.dist.x / this.totalSteps));
                 this.step.y = random(this.pos.y, this.pos.y + (this.dist.y / this.totalSteps));
             }
+        } else {
+            strokeWeight(1);
         }
     }
     catch (pos) {
