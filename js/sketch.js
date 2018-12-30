@@ -79,7 +79,7 @@ function draw() {
         for (let i in cores) {
             cores[i].show();
             //            cores[i].update(freq[Math.floor(200 / (i + 1))]);
-            cores[i].update(vol * 100);
+            cores[i].update(vol * ((i + 1) * 100));
         }
     }
 }
