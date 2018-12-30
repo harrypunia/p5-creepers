@@ -32,7 +32,7 @@ let creepersLeft = [],
     population = 200,
     reset = false,
     init = false,
-    core1,
+    cores = [],
     fft,
     freq;
 var song;
@@ -51,7 +51,9 @@ function setup() {
         creepersRight[i] = new Creeper(width, random(0, height));
         creepersBottom[i] = new Creeper(random(0, width), height);
     }
-    core1 = new Core(10);
+    for (let i = 0; i < 4; i++) {
+        cores[i] = new Core((i + 1) * 20)
+    }
     background(col[0].r, col[0].g, col[0].b);
 }
 
@@ -65,7 +67,10 @@ function draw() {
             creepersRight[i].show(freq[i]);
             creepersBottom[i].show(freq[i]);
         }
-        core1.show();
+        for (let i in cores) {
+            cores[i].show();
+            cores[i].update(freq[256 / i]);
+        }
     }
 }
 
