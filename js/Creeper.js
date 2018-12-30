@@ -17,9 +17,9 @@ class Creeper {
             y: 0
         }
         this.lastStroke = {
-            r: 255,
-            g: 255,
-            b: 255
+            r: 0,
+            g: 0,
+            b: 0
         }
         this.totalSteps = 20;
         this.life = 100;
@@ -30,6 +30,7 @@ class Creeper {
         }
     }
     show() {
+        stroke(this.lastStroke.r, this.lastStroke.g, this.lastStroke.b)
         line(this.pos.x, this.pos.y, this.step.x, this.step.y);
         this.pos.x = this.step.x;
         this.pos.y = this.step.y;
@@ -40,7 +41,6 @@ class Creeper {
         if (chance) {
             this.updateDist();
             this.assignColor();
-            stroke(this.lastStroke.r, this.lastStroke.g, this.lastStroke.b)
             if (this.catch(this.pos)) {} else {
                 this.step.x = random(this.pos.x, this.pos.x + (this.dist.x / this.totalSteps));
                 this.step.y = random(this.pos.y, this.pos.y + (this.dist.y / this.totalSteps));

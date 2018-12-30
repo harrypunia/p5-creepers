@@ -28,12 +28,14 @@ let creepersLeft = [],
             g: 23,
             b: 47
         },
-    };
+    },
+    population = 200,
+    reset = false;
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight, P2D);
     noFill();
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < population / 4; i++) {
         creepersLeft[i] = new Creeper(0, random(0, height));
         creepersTop[i] = new Creeper(random(0, width), 0);
         creepersRight[i] = new Creeper(width, random(0, height));
@@ -43,7 +45,7 @@ function setup() {
 }
 
 function draw() {
-    background(col[0].r, col[0].g, col[0].b, 10);
+    reset ? (background(col[0].r, col[0].g, col[0].b), reset = false) : background(col[0].r, col[0].g, col[0].b, 10);
 
     for (let i in creepersLeft) {
         creepersLeft[i].show();
@@ -54,5 +56,6 @@ function draw() {
 }
 
 function windowResized() {
+    reset = true;
     resizeCanvas(window.innerWidth, window.innerHeight);
 }
