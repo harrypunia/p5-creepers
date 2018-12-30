@@ -16,8 +16,7 @@ class Core {
         resetMatrix();
     }
     update(freq) {
-        this.r = freq > this.initR ? freq : freq > 120 ? freq * 4 : this.initR;
-        say(freq);
+        this.r = freq > this.initR ? freq : freq > 80 ? freq * 10 : this.initR;
         //this.x = freq > 150 ? freq - 150 : 0;
     }
 }

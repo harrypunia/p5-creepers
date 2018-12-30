@@ -69,8 +69,9 @@ function draw() {
         }
         for (let i in cores) {
             cores[i].show();
-            cores[i].update(freq[256 / i]);
+            cores[i].update(freq[Math.floor(200 / (i + 1))]);
         }
+        say(freq[255]);
     }
 }
 

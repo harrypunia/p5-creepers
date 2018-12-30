@@ -29,8 +29,8 @@ class Creeper {
         this.life = 100;
         this.chance = 100;
         this.core = {
-            w: 80,
-            h: 80
+            w: 160,
+            h: 160
         }
     }
     show(freq) {
@@ -49,8 +49,8 @@ class Creeper {
             if (this.catch()) {
                 this.pos.x = this.resetPos.x;
                 this.pos.y = this.resetPos.y;
-                this.step.x = 0;
-                this.step.y = 0;
+                this.step.x = this.resetPos.x;
+                this.step.y = this.resetPos.y;
                 this.updateDist();
                 say(this.pos);
             } else {
