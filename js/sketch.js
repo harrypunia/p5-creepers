@@ -32,6 +32,7 @@ let creepersLeft = [],
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight, P2D);
+    noFill();
     for (let i = 0; i < 20; i++) {
         creepersLeft[i] = new Creeper(0, random(0, height));
         creepersTop[i] = new Creeper(random(0, width), 0);

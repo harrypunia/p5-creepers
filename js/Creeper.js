@@ -16,6 +16,11 @@ class Creeper {
             x: 0,
             y: 0
         }
+        this.lastStroke = {
+            r: 255,
+            g: 255,
+            b: 255
+        }
         this.totalSteps = 20;
         this.life = 100;
         this.chance = 100;
@@ -25,7 +30,6 @@ class Creeper {
         }
     }
     show() {
-        noFill();
         line(this.pos.x, this.pos.y, this.step.x, this.step.y);
         this.pos.x = this.step.x;
         this.pos.y = this.step.y;
@@ -36,6 +40,7 @@ class Creeper {
         if (chance) {
             this.updateDist();
             this.assignColor();
+            stroke(this.lastStroke.r, this.lastStroke.g, this.lastStroke.b)
             if (this.catch(this.pos)) {} else {
                 this.step.x = random(this.pos.x, this.pos.x + (this.dist.x / this.totalSteps));
                 this.step.y = random(this.pos.y, this.pos.y + (this.dist.y / this.totalSteps));
@@ -58,6 +63,12 @@ class Creeper {
         this.dist.y = this.center.y - this.pos.y;
     }
     assignColor() {
-        stroke(col[Math.floor(random(5))].r, col[Math.floor(random(5))].g, col[Math.floor(random(5))].b);
+        let r = col[Math.floor(random(5))].r,
+            g = col[Math.floor(random(5))].g,
+            b = col[Math.floor(random(5))].b;
+        stroke(r, g, b);
+        this.lastStroke.r = r;
+        this.lastStroke.g = g;
+        this.lastStroke.b = b;
     }
 }
