@@ -7,12 +7,12 @@ class Core {
         this.i = i;
     }
     show() {
-        let altC = 9 % (this.i + 1) == 0 ? 3 : 9 % (this.i + 1);
-        noFill();
+        let altC = 8 % (this.i + 1) == 0 ? 3 : 9 % (this.i + 1);
         applyMatrix();
         translate(width / 2, height / 2);
-        stroke(col[altC].r, col[altC].g, col[altC].b);
-        ellipse(this.x, this.y, this.r, this.r, 50);
+        stroke(col[altC].r, col[altC].g, col[altC].b, 10);
+        fill(col[altC].r, col[altC].g, col[altC].b, 1);
+        ellipse(this.x, this.y, this.r, this.r);
         resetMatrix();
     }
     update(freq) {
