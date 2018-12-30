@@ -34,6 +34,8 @@ let creepersLeft = [],
     init = false,
     cores = [],
     fft,
+    amp,
+    vol,
     freq;
 var song;
 
@@ -50,6 +52,7 @@ function setup() {
     createCanvas(window.innerWidth, window.innerHeight, P2D);
     noFill();
     fft = new p5.FFT(0, 256);
+    amp = new p5.Amplitude();
     for (let i = 0; i < population / 4; i++) {
         creepersLeft[i] = new Creeper(0, random(0, height));
         creepersTop[i] = new Creeper(random(0, width), 0);
@@ -65,6 +68,7 @@ function setup() {
 function draw() {
     reset ? (background(col[0].r, col[0].g, col[0].b), reset = false) : background(col[0].r, col[0].g, col[0].b, 10);
     freq = fft.analyze();
+    vol = amp.getLevel();
     if (init) {
         for (let i in creepersLeft) {
             creepersLeft[i].show(freq[i]);
@@ -74,7 +78,8 @@ function draw() {
         }
         for (let i in cores) {
             cores[i].show();
-            cores[i].update(freq[Math.floor(200 / (i + 1))]);
+            //            cores[i].update(freq[Math.floor(200 / (i + 1))]);
+            cores[i].update(vol * 100);
         }
     }
 }
