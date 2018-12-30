@@ -39,9 +39,14 @@ var song;
 
 function preload() {
     song = loadSound('/assets/wall.mp3');
+
 }
 
 function setup() {
+    if (song.isLoaded()) {
+        let btn = document.getElementById('play');
+        btn.classList.add('in');
+    }
     createCanvas(window.innerWidth, window.innerHeight, P2D);
     noFill();
     fft = new p5.FFT(0, 256);
@@ -52,7 +57,7 @@ function setup() {
         creepersBottom[i] = new Creeper(random(0, width), height);
     }
     for (let i = 0; i < 8; i++) {
-        cores[i] = new Core((i + 1) * 20, i)
+        cores[i] = new Core((i + 1) * 25, i)
     }
     background(col[0].r, col[0].g, col[0].b);
 }
@@ -71,7 +76,6 @@ function draw() {
             cores[i].show();
             cores[i].update(freq[Math.floor(200 / (i + 1))]);
         }
-        say(freq[255]);
     }
 }
 
@@ -86,11 +90,6 @@ const initSketch = () => {
     let btn = document.getElementById('play');
     btn.style.display = 'none';
 }
-
-setTimeout(() => {
-    let btn = document.getElementById('play');
-    btn.classList.add('in');
-}, 1000)
 
 //Testing [Delete]
 const say = m => console.log(m);
