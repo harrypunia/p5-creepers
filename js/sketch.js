@@ -30,7 +30,12 @@ let creepersLeft = [],
         },
     },
     population = 200,
-    reset = false;
+    reset = false,
+    init = false;
+
+function prelaod() {
+    loadSound('assets/wall.mp3');
+}
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight, P2D);
@@ -46,16 +51,23 @@ function setup() {
 
 function draw() {
     reset ? (background(col[0].r, col[0].g, col[0].b), reset = false) : background(col[0].r, col[0].g, col[0].b, 10);
-
-    for (let i in creepersLeft) {
-        creepersLeft[i].show();
-        creepersTop[i].show();
-        creepersRight[i].show();
-        creepersBottom[i].show();
+    if (init) {
+        for (let i in creepersLeft) {
+            creepersLeft[i].show();
+            creepersTop[i].show();
+            creepersRight[i].show();
+            creepersBottom[i].show();
+        }
     }
 }
 
 function windowResized() {
     reset = true;
     resizeCanvas(window.innerWidth, window.innerHeight);
+}
+
+const initSketch = () {
+    init = true;
+    let play = document.getElementById('play');
+    play.style.display = 'none';
 }

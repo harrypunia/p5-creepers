@@ -8,6 +8,10 @@ class Creeper {
             x: x,
             y: y
         };
+        this.resetPos = {
+            x: x,
+            y: y
+        }
         this.step = {
             x: x,
             y: y
